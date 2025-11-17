@@ -1,0 +1,388 @@
+/* Estilos base: reseteo simple y modelo de caja consistente */
+* {
+    margin: 0;                 /* Quita márgenes por defecto */
+    padding: 0;                /* Quita rellenos por defecto */
+    box-sizing: border-box;    /* Incluye borde y padding en el cálculo de width/height */
+}
+
+body {
+    font-family: 'Arial', sans-serif; /* Fuente base del sitio */
+    overflow: hidden;                 /* Evita scroll; toda la escena cabe en viewport */
+    background: #a1d5ff;              /* Color de fondo de respaldo detrás de la imagen */
+}
+
+/* Contenedor principal */
+#gameContainer {
+    position: relative;       /* Posiciona elementos hijos absolutamente respecto a este contenedor */
+    width: 100vw;             /* Ocupa todo el ancho de la ventana */
+    height: 100vh;            /* Ocupa todo el alto de la ventana */
+    display: flex;            /* Centrado de contenido superpuesto (no esencial para absolutos) */
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;         /* Oculta cualquier desborde fuera del área del juego */
+}
+
+/* Fondo principal */
+#backgroundImage {
+    position: absolute;   /* Se coloca detrás del resto de elementos */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;    /* Cubre el contenedor sin deformarse */
+    object-position: center; /* Centra el foco de la imagen */
+    pointer-events: none;  /* No interfiere con clics/táctil */
+    z-index: 1;            /* Capa de fondo */
+}
+
+
+/* Titulo */
+#titulo {
+    position: absolute;
+    top: 5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40vw;
+    max-width: 500px;
+    height: auto;
+    z-index: 4;
+}
+
+/* Personaje esperando */
+#personaje {
+    position: absolute;             /* Para ubicar al personaje sobre el fondo */
+    bottom: 15%;                    /* Altura del suelo visual en relación al viewport */
+    left: 50%;
+    transform: translateX(-50%);    /* Centra horizontalmente */
+    width: 9vw;                     /* Escala proporcional al ancho de pantalla */
+    height: auto;
+    aspect-ratio: 0.8 / 1;          /* Mantiene relación alto/ancho del sprite en reposo */
+    /*URL PARA STITCH*/
+    /*background-image: url('../../images/stitch/stitch_sentado.png');*/
+
+    /*URL PARA PIKACHU*/
+    background-image: url(../../images/pikachu/pikachu_sentado.png);
+
+    /**URL PARA GOKU*/
+    /*background-image: url(../../images/goku/goku_espera.png);*/
+    background-size: contain;        /* Ajusta sin recortar */
+    background-repeat: no-repeat;    /* No repetir imagen */
+    background-position: center bottom; /* Alinea el pie del sprite con el suelo */
+    z-index: 5;                      /* Por encima del fondo y del bloque */
+    display: block;
+}
+
+/* Personaje saltando */
+#personaje.jumping {
+    /*URL PARA STITCH*/
+    /*background-image: url('../../images/stitch/stitch_saltando.png');*/
+
+    /*URL PARA PIKACHU*/
+    background-image: url(../../images/pikachu/pikachu_saltando.webp);
+
+    /*URL PARA GOKU*/
+    /*background-image: url(../../images/goku/goku_salta-removebg-preview.png);*/
+    animation: jump 0.6s ease-in-out; /* Aplica animación vertical de salto */
+    width: 16vw;                      /* Tamaño ligeramente mayor durante el salto */
+    height: auto;
+    aspect-ratio: 1 / 1.2;            /* Proporción del sprite en salto */
+}
+
+@keyframes jump {
+    0% {
+        bottom: 15%;                         /* Parte desde el suelo visual */
+        transform: translateX(-50%) rotate(0deg);
+    }
+    50% {
+        bottom: 52%;                         /* Pico del salto */
+        transform: translateX(-50%) rotate(-3deg); /* Ligera rotación para dinamismo */
+    }
+    100% {
+        bottom: 18%;                         /* Aterrizaje cercano al punto inicial */
+        transform: translateX(-50%) rotate(0deg);
+    }
+}
+
+/* Bloque con interrogación */
+.block {
+    position: absolute;                  /* Se ubica en medio de la pantalla */
+    top: 38%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6vw;                          /* Escala proporcional */
+    max-width: 65px;
+    height: auto;
+    aspect-ratio: 1 / 1;                 /* Cuadrado */
+    background-image: url('../../images/bloque.png'); /* Textura del bloque */
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 3;                           /* Por encima del fondo, debajo del personaje */
+}
+
+.block.hit {
+    animation: blockHit 0.3s ease-out;   /* Pequeño salto del bloque al ser golpeado */
+}
+
+@keyframes blockHit {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);   /* Posición normal */
+    }
+    50% {
+        transform: translateX(-50%) translateY(-12px); /* Efecto de golpe hacia arriba */
+    }
+}
+
+/* Botón de salto */
+.jump-button {
+    position: absolute;                               /* Fijo en la parte inferior central */
+    bottom: 5%;                                       /* Altura del botón respecto al suelo */
+    left: 50%;
+    transform: translateX(-50%);                      /* Centrado horizontal */
+    width: 12vw;                                      /* Tamaño responsive */
+    max-width: 135px;                                 /* Límite máximo de ancho */
+    height: auto;
+    aspect-ratio: 2.2 / 1;                            /* Proporción alargada tipo píldora */
+    /* Nuevo estilo visual */
+    background: linear-gradient(135deg, #ffcf4a 0%, #ff9f1c 45%, #ff7a18 100%); /* Gradiente cálido */
+    border: 0;                                        /* Sin borde visible */
+    border-radius: 999px;                             /* Bordes totalmente redondeados */
+    box-shadow: 0 8px 0 #b85a0a, 0 12px 24px rgba(0,0,0,0.35); /* Sombra 3D */
+    cursor: pointer;                                  /* Cursor de mano */
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease; /* Animaciones suaves */
+    z-index: 10;                                      /* Por encima de casi todo */
+    display: flex;                                    /* Centrado del contenido interno (pseudo-elementos) */
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #3a2a00;                                   /* Texto del botón */
+    font-weight: 800;                                 /* Peso fuerte para legibilidad */
+    letter-spacing: 0.5px;                            /* Espaciado del texto */
+    text-transform: uppercase;                        /* Texto en mayúsculas */
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);       /* Realce del texto */
+}
+
+/* Icono + texto dentro del botón usando pseudo-elemento SVG embebido */
+.jump-button::before {
+    content: '';
+    display: inline-block;               /* Permite dimensionar el pseudo-elemento */
+    width: 1.2em;                        /* Tamaño relativo al texto */
+    height: 1.2em;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    /* Icono flecha/jump en SVG inline codificado */
+    background-image: url("data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 12l5-5v3h4V7l5 5-5 5v-3h-4v3l-5-5z' fill='%233a2a00'/%3E%3C/svg%3E");
+    filter: drop-shadow(0 1px 0 rgba(255,255,255,0.6)); /* Realce del icono */
+    margin-right: 6px;                   /* Separación respecto al texto */
+}
+
+/* Texto accesible con aria-label no es visible; añadimos etiqueta visual */
+.jump-button::after {
+    content: 'Saltar';                   /* Texto visible del botón */
+    font-size: clamp(12px, 2.6vw, 16px); /* Escala del texto según viewport */
+}
+
+.jump-button:hover {
+    transform: translateX(-50%) translateY(-2px) scale(1.03); /* Efecto de elevarse */
+    box-shadow: 0 10px 0 #b85a0a, 0 16px 28px rgba(0,0,0,0.4);  /* Sombra m��s larga */
+    filter: brightness(1.05) saturate(1.05);                   /* Aumenta brillo y saturación */
+}
+
+.jump-button:active {
+    transform: translateX(-50%) translateY(2px) scale(0.98); /* Simula pulsación */
+    box-shadow: 0 4px 0 #b85a0a, 0 8px 14px rgba(0,0,0,0.35); /* Sombra corta al presionar */
+}
+
+
+
+/* Mensaje emergente */
+.message {
+    position: absolute;                       /* Caja flotante sobre la escena */
+    left: 50%;
+    top: 8%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.98);    /* Fondo casi sólido para legibilidad */
+    border: 5px solid #FFD700;                /* Borde dorado tipo tarjeta */
+    border-radius: 15px;                      /* Esquinas redondeadas */
+    padding: 25px 35px;                       /* Espaciado interno */
+    max-width: 90%;
+    width: 650px;
+    max-height: 80vh;                         /* Evita salir de la pantalla en alto */
+    overflow-y: auto;                         /* Scroll interno si se excede */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);/* Sombra externa */
+    z-index: 20;
+    opacity: 0;                               /* Inicia invisible para animación */
+    animation: showMessage 0.4s ease-out forwards; /* Aparece suavemente */
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.message h3 {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 1.3em;
+}
+
+.message ul {
+    list-style-position: inside;
+    padding-left: 0;
+}
+
+.message li {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+@keyframes showMessage {
+    0% {
+        opacity: 0;                                       /* Empieza transparente y más arriba */
+        transform: translateX(-50%) translateY(-30px) scale(0.9);
+    }
+    100% {
+        opacity: 1;                                       /* Termina visible en posición final */
+        transform: translateX(-50%) translateY(0) scale(1);
+    }
+}
+
+.close-btn {
+    position: absolute;                          /* Botón flotante dentro de la tarjeta */
+    top: 12px;
+    right: 12px;
+    background: #D2691E;                        /* Color base */
+    color: white;
+    border: none;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;                          /* Botón redondo */
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.close-btn:hover {
+    background: #A0522D;                        /* Oscurece al pasar el cursor */
+    transform: scale(1.15) rotate(90deg);       /* Pequeña animación lúdica */
+}
+
+/* Tablet (max 1024px) */
+@media (max-width: 1024px) {
+    #titulo {
+        width: 45vw;
+        top: 3vh;
+    }
+
+    #personaje {
+        width: 10vw;
+        bottom: 15%;
+    }
+
+    .block {
+        width: 8vw;
+        top: 40%;
+    }
+
+    .jump-button {
+        width: 14vw;
+        bottom: 8%;
+        max-width: 135px;
+        aspect-ratio: 2.2 / 1;
+    }
+}
+
+/* Celulares (max 768px) */
+@media (max-width: 768px) {
+    #titulo {
+        width: 60vw;
+        top: 3vh;
+    }
+
+    #personaje {
+        width: 12vw;
+        bottom: 15%;
+    }
+
+    .block {
+        width: 10vw;
+        top: 40%;
+    }
+
+    .jump-button {
+        width: 22vw;
+        bottom: 8%;
+        max-width: 125px;
+        aspect-ratio: 2.2 / 1;
+    }
+
+    .message {
+        width: 90%;
+        font-size: 13px;
+        padding: 18px 24px;
+    }
+
+    #backgroundImage {
+        object-fit: cover;
+    }
+
+    #brillo {
+        bottom: 4%;
+        right: 5%;
+        width: 18vw;
+        max-width: 80px;
+    }
+}
+
+/* Celulares pequeños (max 480px) */
+@media (max-width: 480px) {
+    #titulo {
+        width: 70vw;
+        top: 2vh;
+    }
+
+    #personaje {
+        width: 16vw;
+        bottom: 15%;
+    }
+
+    .block {
+        width: 14vw;
+        top: 45%;
+    }
+
+    .jump-button {
+        width: 26vw;
+        bottom: 9%;
+        max-width: 120px;
+        aspect-ratio: 2.2 / 1;
+    }
+
+    .message {
+        width: 95%;
+        font-size: 12px;
+        padding: 15px 20px;
+        border-width: 3px;
+    }
+
+    .close-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 16px;
+    }
+
+    #backgroundImage {
+        object-fit: cover;
+    }
+
+    #brillo {
+        bottom: 7%;
+        right: 0%;
+        width: 18vw;
+        max-width: 80px;
+    }
+}
+

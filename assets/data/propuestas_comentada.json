@@ -1,0 +1,52 @@
+{
+  "_comment": "Este archivo JSON define un arreglo de propuestas. Cada elemento tiene un 'title' (string) y 'content' (array de strings). No se pueden poner comentarios con // o /* */ en JSON estándar, por eso se documenta con esta clave.",
+  "propuestas": [
+    {
+      "title": "1. Lucha Contra la Corrupción",    
+      "content": [
+        "Tráfico de influencias de autoridades hacia familiares, sin examen de competencia. Complicidad del decano y del director de carrera.",
+        "La obstaculización de la decanatura a todos los trámites mediante objeciones sistemáticas.",
+        "Rectorado y decanato llevaron el proyecto Key Lab, en convenio con Corea del Sur para IA, a la Facultad de Ingeniería y a la Técnica."
+      ]
+    },
+    {
+      "title": "2. Fortalecer la Institución: Académico",
+      "content": [
+        "Continuidad de los 7 nuevos planes ya implementados.",
+        "Apoyar a docentes y estudiantes en materia académica.",
+        "Mejorar los cursos de temporada en consenso con docentes y estudiantes.",
+        "Evaluar y acreditar nuestros programas académicos, y actualizar los planes.",
+        "Impulsar el Plan Estratégico de la Carrera (PEI)."
+      ]
+    },
+    {
+      "title": "3. Fortalecer la Institución: Tecnológico",
+      "content": [
+        "Mejoramiento de la red inalámbrica; más Internet para Informática.",
+        "Mejoramiento de laboratorios para el uso de los estudiantes.",
+        "Mejorar el acceso y uso de tecnologías en el Data Center para aplicaciones en la nube, de modo que la carrera pueda contar con su propia nube de Informática.",
+        "Potenciar recursos para IA.",
+        "Fortalecer la Radio OPEN Informática para que los estudiantes puedan mostrar sus productos en extensión universitaria."
+      ]
+    },
+    {
+      "title": "4. Económico: Recuperar los recursos del Prefacultativo",
+      "content": [
+        "Continuar la lucha y recuperar los recursos del prefacultativo, en su mayoría generados por postulantes a Informática.",
+        "La decanatura retiene el 100% de los recursos generados en cursos preuniversitarios.",
+        "Se calcula que el prefacultativo genera más de 2 millones de bolivianos por gestión, los cuales se estarían gastando desde la decanatura en la preparación de la campaña rectoral del 2027.",
+        "Las contrataciones realizadas por el decanato serían de personal político dirigido a campañas políticas.",
+        "Haremos transparente el uso de esos recursos."
+      ]
+    },
+    {
+      "title": "5. Posgrado y Facultización",
+      "content": [
+        "Continuar la lucha histórica por la facultización de Informática; somos la segunda carrera más grande de la UMSA.",
+        "Continuar la lucha por nuestra institución pese a las adversidades y contra el decano de turno.",
+        "El uso arbitrario de los recursos de posgrado de Informática: el decano usó más de Bs. 100.000 en 2024 para gastos de decanatura.",
+        "Nunca olvidaremos que en 2013, con la Licenciada Elizabeth García, había Bs. 1.300.000 destinados a la compra de un edificio para posgrado; dinero que desapareció en el área desconcentrada del decanato. In memoriam a la querida colega."
+      ]
+    }
+  ]
+}
