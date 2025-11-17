@@ -1,0 +1,42 @@
+[
+  {
+    "title": "1. Inteligencia Artificial Responsable",
+    "content": [
+      "Implementar modelos de IA con auditorías de sesgo y explicabilidad (XAI) para decisiones transparentes.",
+      "Adoptar prácticas de MLOps: versionado de datos/modelos, despliegue continuo y monitoreo en producción.",
+      "Privacidad diferencial y federated learning para entrenar sin exponer datos sensibles de usuarios."
+    ]
+  },
+  {
+    "title": "2. Ciberseguridad Moderna",
+    "content": [
+      "Zero Trust: autenticar y autorizar cada solicitud, incluso dentro de la red interna.",
+      "Implementar autenticación multifactor (MFA) y llaves de seguridad físicas (FIDO2/U2F).",
+      "Red Teams, Bug Bounty y análisis estático/dinámico (SAST/DAST) como parte del ciclo de desarrollo."
+    ]
+  },
+  {
+    "title": "3. Computación en la Nube y Edge",
+    "content": [
+      "Arquitecturas serverless para escalar automáticamente y pagar solo por uso.",
+      "Edge computing para latencias bajas en IoT, videojuegos y experiencias en tiempo real.",
+      "Infraestructura como código (IaC) con Terraform/Pulumi y políticas de seguridad como código (OPA)."
+    ]
+  },
+  {
+    "title": "4. Desarrollo de Software Sostenible",
+    "content": [
+      "Medir y reducir la huella de carbono del software (Green IT): eficiencia en CPU, memoria y ancho de banda.",
+      "Arquitecturas modulares y microfrontends para despliegues independientes y resiliencia.",
+      "Testing continuo: contratos, pruebas de carga y observabilidad con métricas, logs y trazas distribuidas."
+    ]
+  },
+  {
+    "title": "5. Experiencias Inmersivas y UX",
+    "content": [
+      "WebXR y realidad aumentada en el navegador para educación, turismo y retail.",
+      "Accesibilidad desde el diseño: navegación por teclado, ARIA y alto contraste por defecto.",
+      "Performance-first: optimización de imágenes, lazy loading y prefetch inteligente para TTI bajo."
+    ]
+  }
+]
